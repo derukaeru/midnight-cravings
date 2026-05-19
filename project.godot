@@ -11,9 +11,28 @@ config_version=5
 [application]
 
 config/name="midnight-cravings"
+config/tags=PackedStringArray("jam_game")
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("jam_game")
+
+[autoload]
+
+Dialogues="*uid://covd0lsyb1vj0"
+DialogueManager="*uid://c68g4v7ppwad7"
+GameManager="*uid://5psrvkyqywgw"
+Registry="*uid://sqfwtvhkj8lk"
+SceneChanger="*uid://c6omtqb0ijsag"
+Util="*uid://b1d1fvadhebcn"
+
+[display]
+
+window/size/viewport_width=768
+window/size/viewport_height=576
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [physics]
 
@@ -21,6 +40,7 @@ config/tags=PackedStringArray("jam_game")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
