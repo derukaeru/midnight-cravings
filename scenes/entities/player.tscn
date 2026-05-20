@@ -5,14 +5,22 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucweq"]
 size = Vector2(16, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08t41"]
+size = Vector2(16, 19)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ucweq"]
 
 [node name="player" type="CharacterBody2D" unique_id=369162107]
 script = ExtResource("1_ucweq")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440511491]
+[node name="StandingCollisionShape2D" type="CollisionShape2D" parent="." unique_id=1440511491]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_ucweq")
+
+[node name="CrouchingCollisionShape2D" type="CollisionShape2D" parent="." unique_id=2043871728]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_08t41")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=140833226]
 sprite_frames = SubResource("SpriteFrames_ucweq")
