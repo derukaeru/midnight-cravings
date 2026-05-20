@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://dix67ojrdr6ht"]
 
 [ext_resource type="Script" uid="uid://cdc4eiscin1em" path="res://scenes/menu/title_screen.gd" id="1_cbih2"]
-[ext_resource type="Shader" uid="uid://dywod8uovjrn6" path="res://assets/shaders/luminance.gdshader" id="2_200k4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4crq4"]
-shader = ExtResource("2_200k4")
-shader_parameter/luminance_cutoff = 0.0
-shader_parameter/invert = false
 
 [node name="title_screen" type="Control" unique_id=198211424]
 layout_mode = 3
@@ -50,3 +46,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
