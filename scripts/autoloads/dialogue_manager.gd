@@ -3,7 +3,6 @@ extends Node
 signal done_typing
 signal typed_letter
 
-@onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()
 var dialogue_label: Label
 
 var type_speed = 0.05
@@ -16,8 +15,8 @@ var letter_timer: Timer
 var fade_timer: Timer
 
 func  _ready() -> void:
-	Util.get_group_node("global_canvas").add_child(dialogue_box)
-	dialogue_label = dialogue_box.get_node("dialogue")
+	while dialogue_label == null:
+		
 	
 	dialogue_label.text = ""
 

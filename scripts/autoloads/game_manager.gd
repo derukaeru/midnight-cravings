@@ -5,8 +5,8 @@ signal ui_closed
 
 var ui_open: bool = false
 
+@onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()
 @onready var pause_screen = load(Registry.UID["pause_screen"]).instantiate()
-
 var canvas_layer = CanvasLayer.new()
 
 func _ready() -> void:
@@ -16,11 +16,15 @@ func _ready() -> void:
 	canvas_layer.add_to_group("global_canvas", true)
 	canvas_layer.add_child(pause_screen)
 	
+	Util.get_group_node("global_canvas").add_child(dialogue_box)
+	
 	pause_screen.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	ui_closed.connect(func(): ui_open = false)
 	ui_opened.connect(func(): ui_open = true)
+	
+	DialogueManager.say("testing testing testing testing testing testing testing testing testing testing")
 
 func _process(_d) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
