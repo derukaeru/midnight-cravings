@@ -9,5 +9,5 @@ extends Node2D
 @onready var move_right_area: Area2D = $move_right
 
 func _ready():
-	move_left_area.body_entered.connect(func(_a): GameManager.move_to_left())
-	#move_right_area.body_entered.connect(func(_a): GameManager.move_to_right())
+	move_left_area.body_entered.connect(func(_a): if _a.is_in_group("player"): GameManager.move_to_left())
+	move_right_area.body_entered.connect(func(_a): if _a.is_in_group("player"): GameManager.move_to_right())

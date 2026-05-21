@@ -64,7 +64,7 @@ func turn_tween_left(old_face, new_face) -> void:
 	new_face.scale = Vector2(0.0, 1.0)
 	new_face.position = Vector2.ZERO
 	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
-	tween.parallel().tween_property(Util.get_player(), "position:x", viewport_width - 32, turn_speed)
+	tween.parallel().tween_property(Util.get_player(), "position:x", viewport_width - 17, turn_speed)
 	
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
@@ -86,7 +86,7 @@ func turn_tween_right(old_face, new_face) -> void:
 	
 	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
 	tween.parallel().tween_property(new_face, "position", Vector2(0.0, 0.0), turn_speed)
-	tween.parallel().tween_property(Util.get_player(), "position:x", 32, turn_speed)
+	tween.parallel().tween_property(Util.get_player(), "position:x", 17, turn_speed)
 	
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
