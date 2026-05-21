@@ -9,19 +9,21 @@ enum States {
 	STANDING
 }
 var state: States = States.STANDING
+var can_move: bool = true
 
 func _physics_process(_delta) -> void:
-	var dir = Input.get_axis("move_left", "move_right")
-	if dir:
-		velocity.x = dir * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	if Input.is_action_just_pressed("crouch"):
-		state = States.CROUCHING
-	
-	if Input.is_action_just_released("crouch"):
-		state = States.STANDING
+	if can_move:
+		var dir = Input.get_axis("move_left", "move_right")
+		if dir:
+			velocity.x = dir * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		if Input.is_action_just_pressed("crouch"):
+			state = States.CROUCHING
+		
+		if Input.is_action_just_released("crouch"):
+			state = States.STANDING
 	
 	move_and_slide()
 

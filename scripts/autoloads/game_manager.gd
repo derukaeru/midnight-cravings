@@ -50,6 +50,8 @@ func _process(_d) -> void:
 	
 	if Input.is_action_just_pressed("ui_left"):
 		move_to_left()
+	if Input.is_action_just_pressed("ui_right"):
+		move_to_right()
 
 func turn_tween_left(old_face, new_face) -> void:
 	var tween = get_tree().create_tween()
@@ -62,11 +64,13 @@ func turn_tween_left(old_face, new_face) -> void:
 	new_face.scale = Vector2(0.0, 1.0)
 	new_face.position = Vector2.ZERO
 	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
+	tween.parallel().tween_property(Util.get_player(), "position:x", viewport_width - 32, turn_speed)
 	
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
 		current_face += 1
 		if current_face >= 5: current_face = 1
+		Util.get_player().can_move = true
 	)
 
 func turn_tween_right(old_face, new_face) -> void:
@@ -75,22 +79,28 @@ func turn_tween_right(old_face, new_face) -> void:
 	old_face.scale = Vector2(1.0, 1.0)
 	old_face.position = Vector2.ZERO
 	tween.tween_property(old_face, "scale", Vector2(0.0, 1.0), turn_speed)
-	tween.parallel().tween_property(old_face, "position", Vector2(viewport_width, 0.0), turn_speed)
-
+	
 	new_face.scale = Vector2(0.0, 1.0)
 	new_face.position = Vector2.ZERO
+	new_face.position = Vector2(viewport_width, 0.0)
+	
 	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
+	tween.parallel().tween_property(new_face, "position", Vector2(0.0, 0.0), turn_speed)
+	tween.parallel().tween_property(Util.get_player(), "position:x", 32, turn_speed)
 	
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
-		current_face += 1
-		if current_face >= 5: current_face = 1
+		current_face -= 1
+		if current_face <= 0: current_face = 4
+		Util.get_player().can_move = true
 	)
 
 
 func move_to_left() -> void:
 	if turning: return
 	turning = true
+	
+	Util.get_player().can_move = false
 	
 	match current_face:
 		1:
@@ -118,12 +128,26 @@ func move_to_right() -> void:
 	if turning: return
 	turning = true
 	
+	Util.get_player().can_move = false
+	
 	match current_face:
 		1:
-			pass
+			var face_1 = Util.get_main().face_1
+			var face_4 = Util.get_main().face_4
+			turn_tween_right(face_1, face_4)
 		2: 
-			pass
+			var face_2 = Util.get_main().face_2
+			var face_1 = Util.get_main().face_1
+			
+			turn_tween_right(face_2, face_1)
 		3: 
 			pass
+			var face_3 = Util.get_main().face_3
+			var face_2 = Util.get_main().face_2
+			
+			turn_tween_right(face_3, face_2)
 		4: 
-			pass
+			var face_4 = Util.get_main().face_4
+			var face_3 = Util.get_main().face_3
+			
+			turn_tween_right(face_4, face_3)
