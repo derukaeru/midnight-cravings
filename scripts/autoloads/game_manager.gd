@@ -15,14 +15,16 @@ func _ready() -> void:
 	
 	canvas_layer.add_to_group("global_canvas", true)
 	canvas_layer.add_child(pause_screen)
-	
-	Util.get_group_node("global_canvas").add_child(dialogue_box)
+	canvas_layer.add_child(dialogue_box)
 	
 	pause_screen.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	ui_closed.connect(func(): ui_open = false)
 	ui_opened.connect(func(): ui_open = true)
+	
+	DialogueManager.dialogue_box = dialogue_box
+	DialogueManager.dialogue_label = dialogue_box.get_node("dialogue")
 	
 	DialogueManager.say("testing testing testing testing testing testing testing testing testing testing")
 
