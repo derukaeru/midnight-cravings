@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://6cae11kpahyv"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_57m1f"]
+
 [node name="dialogue_box" type="CanvasLayer" unique_id=156380445]
+layer = 0
+
+[node name="dialogue" type="Label" parent="." unique_id=893035387]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "test"
+label_settings = SubResource("LabelSettings_57m1f")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
