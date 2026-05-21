@@ -3,7 +3,14 @@ extends Node
 signal ui_opened
 signal ui_closed
 
+signal turn_done
+
 var ui_open: bool = false
+var current_face: int = 1
+
+var viewport_width: int = 512
+var turn_speed: float = 1.0
+var turning: bool = false
 
 @onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()
 @onready var pause_screen = load(Registry.UID["pause_screen"]).instantiate()
@@ -23,6 +30,8 @@ func _ready() -> void:
 	ui_closed.connect(func(): ui_open = false)
 	ui_opened.connect(func(): ui_open = true)
 	
+	turn_done.connect(func(): turning = false)
+	
 	DialogueManager.dialogue_box = dialogue_box
 	DialogueManager.dialogue_label = dialogue_box.get_node("dialogue")
 	
@@ -38,3 +47,83 @@ func _process(_d) -> void:
 			get_tree().paused = true
 			pause_screen.show()
 			Util.mouse_visible()
+	
+	if Input.is_action_just_pressed("ui_left"):
+		move_to_left()
+
+func turn_tween_left(old_face, new_face) -> void:
+	var tween = get_tree().create_tween()
+	
+	old_face.scale = Vector2(1.0, 1.0)
+	old_face.position = Vector2.ZERO
+	tween.tween_property(old_face, "scale", Vector2(0.0, 1.0), turn_speed)
+	tween.parallel().tween_property(old_face, "position", Vector2(viewport_width, 0.0), turn_speed)
+
+	new_face.scale = Vector2(0.0, 1.0)
+	new_face.position = Vector2.ZERO
+	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
+	
+	tween.tween_callback(func(): turn_done.emit())
+	tween.parallel().tween_callback(func(): 
+		current_face += 1
+		if current_face >= 5: current_face = 1
+	)
+
+func turn_tween_right(old_face, new_face) -> void:
+	var tween = get_tree().create_tween()
+	
+	old_face.scale = Vector2(1.0, 1.0)
+	old_face.position = Vector2.ZERO
+	tween.tween_property(old_face, "scale", Vector2(0.0, 1.0), turn_speed)
+	tween.parallel().tween_property(old_face, "position", Vector2(viewport_width, 0.0), turn_speed)
+
+	new_face.scale = Vector2(0.0, 1.0)
+	new_face.position = Vector2.ZERO
+	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
+	
+	tween.tween_callback(func(): turn_done.emit())
+	tween.parallel().tween_callback(func(): 
+		current_face += 1
+		if current_face >= 5: current_face = 1
+	)
+
+
+func move_to_left() -> void:
+	if turning: return
+	turning = true
+	
+	match current_face:
+		1:
+			var face_1 = Util.get_main().face_1
+			var face_2 = Util.get_main().face_2
+			turn_tween_left(face_1, face_2)
+		2: 
+			var face_2 = Util.get_main().face_2
+			var face_3 = Util.get_main().face_3
+			
+			turn_tween_left(face_2, face_3)
+		3: 
+			pass
+			var face_3 = Util.get_main().face_3
+			var face_4 = Util.get_main().face_4
+			
+			turn_tween_left(face_3, face_4)
+		4: 
+			var face_4 = Util.get_main().face_4
+			var face_1 = Util.get_main().face_1
+			
+			turn_tween_left(face_4, face_1)
+
+func move_to_right() -> void:
+	if turning: return
+	turning = true
+	
+	match current_face:
+		1:
+			pass
+		2: 
+			pass
+		3: 
+			pass
+		4: 
+			pass

@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://pbmkl4mhlwjw"]
 
 [ext_resource type="PackedScene" uid="uid://cvkbuyof1earx" path="res://scenes/entities/player.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://d2eikj42c46f" path="res://scenes/main/main.gd" id="1_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://b5ueigm7j7uyw" path="res://scenes/world/face_1.tscn" id="2_6q06x"]
+[ext_resource type="PackedScene" uid="uid://ddh3630dbsjjy" path="res://scenes/world/face_2.tscn" id="3_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://bv7jilbu42yep" path="res://scenes/world/face_3.tscn" id="4_hujxm"]
+[ext_resource type="PackedScene" uid="uid://c8xq1kjse067d" path="res://scenes/world/face_4.tscn" id="5_yyfjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vom5j"]
 size = Vector2(512, 64)
 
-[node name="main" type="Node2D" unique_id=26778150]
+[node name="main" type="Node2D" unique_id=26778150 groups=["main"]]
+script = ExtResource("1_ow5a4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1921450143]
 
@@ -15,3 +21,16 @@ shape = SubResource("RectangleShape2D_vom5j")
 
 [node name="player" parent="." unique_id=369162107 instance=ExtResource("1_hyk8p")]
 position = Vector2(192, 272)
+
+[node name="world" type="Node2D" parent="." unique_id=923366874]
+
+[node name="face_4" parent="world" unique_id=1161289403 instance=ExtResource("5_yyfjg")]
+scale = Vector2(1e-05, 1)
+
+[node name="face_3" parent="world" unique_id=1102027986 instance=ExtResource("4_hujxm")]
+scale = Vector2(1e-05, 1)
+
+[node name="face_2" parent="world" unique_id=500813503 instance=ExtResource("3_ow5a4")]
+scale = Vector2(1e-05, 1)
+
+[node name="face_1" parent="world" unique_id=942031498 instance=ExtResource("2_6q06x")]

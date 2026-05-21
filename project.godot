@@ -38,6 +38,8 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 [global_group]
 
 global_canvas=""
+main=""
+player=""
 
 [gui]
 
