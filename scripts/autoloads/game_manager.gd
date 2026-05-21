@@ -26,7 +26,7 @@ func _ready() -> void:
 	DialogueManager.dialogue_box = dialogue_box
 	DialogueManager.dialogue_label = dialogue_box.get_node("dialogue")
 	
-	DialogueManager.say("testing testing testing testing testing testing testing testing testing testing")
+	DialogueManager.say_line(Dialogues.list["intro"]["player"])
 
 func _process(_d) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):

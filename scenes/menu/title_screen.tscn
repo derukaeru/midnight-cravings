@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dix67ojrdr6ht"]
 
 [ext_resource type="Script" uid="uid://cdc4eiscin1em" path="res://scenes/menu/title_screen.gd" id="1_cbih2"]
-[ext_resource type="Shader" uid="uid://dc1qsn1140jjm" path="res://scenes/menu/mask.gdshader" id="2_200k4"]
+[ext_resource type="Shader" uid="uid://dc1qsn1140jjm" path="res://assets/shaders/mask.gdshader" id="2_200k4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4crq4"]
 shader = ExtResource("2_200k4")
