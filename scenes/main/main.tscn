@@ -8,13 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://c8xq1kjse067d" path="res://scenes/world/face_4.tscn" id="5_yyfjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vom5j"]
-size = Vector2(384, 56)
+size = Vector2(384, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyfjg"]
+size = Vector2(384, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1x3f"]
+size = Vector2(384, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow5a4"]
-size = Vector2(8, 304)
+size = Vector2(8, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hujxm"]
-size = Vector2(8, 304.5)
+size = Vector2(8, 256.125)
 
 [node name="main" type="Node2D" unique_id=26778150 groups=["main"]]
 script = ExtResource("1_ow5a4")
@@ -22,8 +28,28 @@ script = ExtResource("1_ow5a4")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1921450143]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=940789318]
-position = Vector2(192, 276)
+position = Vector2(192, 224)
 shape = SubResource("RectangleShape2D_vom5j")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=306033790]
+position = Vector2(192, 120)
+shape = SubResource("RectangleShape2D_yyfjg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1923119756]
+position = Vector2(192, 24)
+shape = SubResource("RectangleShape2D_b1x3f")
+
+[node name="move_left" type="Area2D" parent="." unique_id=795423281]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="move_left" unique_id=1169647899]
+position = Vector2(4, 128)
+shape = SubResource("RectangleShape2D_ow5a4")
+
+[node name="move_right" type="Area2D" parent="." unique_id=1688041601]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="move_right" unique_id=179251456]
+position = Vector2(380, 127.9375)
+shape = SubResource("RectangleShape2D_hujxm")
 
 [node name="world" type="Node2D" parent="." unique_id=923366874]
 
@@ -39,16 +65,4 @@ scale = Vector2(1e-05, 1)
 [node name="face_1" parent="world" unique_id=942031498 instance=ExtResource("2_6q06x")]
 
 [node name="player" parent="." unique_id=369162107 instance=ExtResource("1_hyk8p")]
-position = Vector2(192, 272)
-
-[node name="move_left" type="Area2D" parent="." unique_id=795423281]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="move_left" unique_id=1169647899]
-position = Vector2(4, 152)
-shape = SubResource("RectangleShape2D_ow5a4")
-
-[node name="move_right" type="Area2D" parent="." unique_id=1688041601]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="move_right" unique_id=179251456]
-position = Vector2(380, 151.75)
-shape = SubResource("RectangleShape2D_hujxm")
+position = Vector2(80, 112)

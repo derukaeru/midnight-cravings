@@ -9,7 +9,9 @@ var ui_open: bool = false
 var current_face: int = 1
 
 var viewport_width: int = 384
-var turn_speed: float = 1.0
+var midground_offset: float = 24.0
+
+var turn_speed: float = 0.6
 var turning: bool = false
 
 @onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()
@@ -48,19 +50,27 @@ func _process(_d) -> void:
 			pause_screen.show()
 			Util.mouse_visible()
 
-func turn_tween_left(old_face, new_face) -> void:
+func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
 	var tween = get_tree().create_tween()
 	
 	old_face.scale = Vector2(1.0, 1.0)
-	old_face.position = Vector2.ZERO
-	tween.tween_property(old_face, "scale", Vector2(0.0, 1.0), turn_speed)
-	tween.parallel().tween_property(old_face, "position", Vector2(viewport_width, 0.0), turn_speed)
+	new_face.scale = Vector2(1.0, 1.0)
+	
+	# midground
+	old_face.midground.scale = Vector2(1.0, 1.0)
+	old_face.midground.position = Vector2(midground_offset, 0.0)
+	tween.tween_property(old_face.midground, "scale:x", 0.0, turn_speed)
+	tween.parallel().tween_property(old_face.midground, "position:x", viewport_width - midground_offset, turn_speed)
 
-	new_face.scale = Vector2(0.0, 1.0)
-	new_face.position = Vector2.ZERO
-	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
+	new_face.midground.scale = Vector2(0.0, 1.0)
+	new_face.midground.position = Vector2(midground_offset, 0.0)
+	tween.parallel().tween_property(new_face.midground, "scale:x", 1.0, turn_speed)
+	
+	
+	# player
 	tween.parallel().tween_property(Util.get_player(), "position:x", viewport_width - 17, turn_speed)
 	
+	# at he end
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
 		current_face += 1
@@ -71,16 +81,15 @@ func turn_tween_left(old_face, new_face) -> void:
 func turn_tween_right(old_face, new_face) -> void:
 	var tween = get_tree().create_tween()
 	
-	old_face.scale = Vector2(1.0, 1.0)
-	old_face.position = Vector2.ZERO
-	tween.tween_property(old_face, "scale", Vector2(0.0, 1.0), turn_speed)
+	old_face.midground.scale = Vector2(1.0, 1.0)
+	old_face.midground.position = Vector2(midground_offset, 0.0)
+	tween.tween_property(old_face.midground, "scale:x", 0.0, turn_speed)
 	
-	new_face.scale = Vector2(0.0, 1.0)
-	new_face.position = Vector2.ZERO
-	new_face.position = Vector2(viewport_width, 0.0)
+	new_face.midground.scale = Vector2(0.0, 1.0)
+	new_face.midground.position = Vector2(viewport_width - midground_offset, 0.0)
 	
-	tween.parallel().tween_property(new_face, "scale", Vector2(1.0, 1.0), turn_speed)
-	tween.parallel().tween_property(new_face, "position", Vector2(0.0, 0.0), turn_speed)
+	tween.parallel().tween_property(new_face.midground, "scale:x", 1.0, turn_speed)
+	tween.parallel().tween_property(new_face.midground, "position:x", midground_offset, turn_speed)
 	tween.parallel().tween_property(Util.get_player(), "position:x", 17, turn_speed)
 	
 	tween.tween_callback(func(): turn_done.emit())

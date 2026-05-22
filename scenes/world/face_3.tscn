@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://bv7jilbu42yep"]
 
-[node name="face_3" type="Node2D" unique_id=1102027986]
+[ext_resource type="Script" uid="uid://cwm30hm4jj6nh" path="res://scenes/world/face_3.gd" id="1_grrvk"]
+[ext_resource type="Texture2D" uid="uid://cyhv0c7cwhc3n" path="res://assets/sprites/world/face_3_midground.png" id="2_grrvk"]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=630648607]
-offset_right = 384.0
-offset_bottom = 304.0
-color = Color(0.18158776, 0.4613176, 0.694703, 1)
+[node name="face_3" type="Node2D" unique_id=1102027986]
+script = ExtResource("1_grrvk")
+
+[node name="midground" type="Sprite2D" parent="." unique_id=1407890724]
+position = Vector2(24, 0)
+texture = ExtResource("2_grrvk")
+centered = false
+
+[node name="foreground" type="Sprite2D" parent="." unique_id=533733574]
+centered = false

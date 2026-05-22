@@ -28,7 +28,7 @@ Util="*uid://b1d1fvadhebcn"
 [display]
 
 window/size/viewport_width=384
-window/size/viewport_height=304
+window/size/viewport_height=256
 window/stretch/mode="viewport"
 
 [editor_plugins]
