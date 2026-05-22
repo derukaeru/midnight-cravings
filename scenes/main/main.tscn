@@ -51,6 +51,11 @@ shape = SubResource("RectangleShape2D_ow5a4")
 position = Vector2(380, 127.9375)
 shape = SubResource("RectangleShape2D_hujxm")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=5126178]
+offset_right = 384.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 1)
+
 [node name="world" type="Node2D" parent="." unique_id=923366874]
 
 [node name="face_4" parent="world" unique_id=1161289403 instance=ExtResource("5_yyfjg")]
