@@ -3,19 +3,19 @@
 [node name="face_2" type="Node2D" unique_id=500813503]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=282850608]
-offset_right = 512.0
-offset_bottom = 384.0
+offset_right = 384.0
+offset_bottom = 304.0
 color = Color(0.3134777, 0.63025206, 0.43649223, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=1210018556]
 offset_left = 88.0
 offset_top = 24.0
-offset_right = 320.0
-offset_bottom = 176.0
+offset_right = 232.0
+offset_bottom = 128.0
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=2121686191]
-offset_left = 336.0
-offset_top = 256.0
-offset_right = 480.0
-offset_bottom = 368.0
+offset_left = 152.0
+offset_top = 152.0
+offset_right = 296.0
+offset_bottom = 264.0
 color = Color(0.31803602, 0.77848333, 0.7682234, 1)

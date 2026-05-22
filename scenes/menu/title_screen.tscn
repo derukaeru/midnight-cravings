@@ -5,8 +5,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4crq4"]
 shader = ExtResource("2_200k4")
-shader_parameter/rect_pos = Vector2(0.3, 0.3)
-shader_parameter/rect_size = Vector2(0.4, 0.4)
+shader_parameter/rect_pos = Vector2(0.26, 0.3)
+shader_parameter/rect_size = Vector2(0.46, 0.4)
 shader_parameter/mask_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_200k4"]
@@ -55,9 +55,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
-offset_top = 88.0
+offset_top = 58.0
 offset_right = 160.0
-offset_bottom = 120.0
+offset_bottom = 90.0
 grow_horizontal = 2
 text = "house noise"
 label_settings = SubResource("LabelSettings_200k4")

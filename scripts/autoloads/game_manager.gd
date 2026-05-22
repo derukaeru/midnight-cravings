@@ -8,7 +8,7 @@ signal turn_done
 var ui_open: bool = false
 var current_face: int = 1
 
-var viewport_width: int = 512
+var viewport_width: int = 384
 var turn_speed: float = 1.0
 var turning: bool = false
 
@@ -47,11 +47,6 @@ func _process(_d) -> void:
 			get_tree().paused = true
 			pause_screen.show()
 			Util.mouse_visible()
-	
-	if Input.is_action_just_pressed("ui_left"):
-		move_to_left()
-	if Input.is_action_just_pressed("ui_right"):
-		move_to_right()
 
 func turn_tween_left(old_face, new_face) -> void:
 	var tween = get_tree().create_tween()

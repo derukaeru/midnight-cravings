@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://7jemke30bxqq"]
 
+[ext_resource type="Script" uid="uid://w3cx3k1dgtu4" path="res://scenes/menu/pause_screen.gd" id="1_s4fn5"]
+
 [node name="pause_screen" type="CanvasLayer" unique_id=1353807919]
 layer = 2
+script = ExtResource("1_s4fn5")
 
 [node name="background" type="ColorRect" parent="." unique_id=271332804]
 anchors_preset = 15
@@ -17,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -70.0
-offset_right = 184.0
-offset_bottom = 70.0
+offset_left = -122.0
+offset_top = -47.0
+offset_right = 122.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -34,7 +37,7 @@ text = "resume"
 [node name="settings" type="Button" parent="buttons" unique_id=1301286948]
 layout_mode = 2
 size_flags_vertical = 3
-text = "settings"
+text = "checkpoint"
 
 [node name="exit" type="Button" parent="buttons" unique_id=586736547]
 layout_mode = 2

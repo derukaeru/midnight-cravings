@@ -3,8 +3,8 @@
 [node name="face_1" type="Node2D" unique_id=942031498]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=128796419]
-offset_right = 512.0
-offset_bottom = 384.0
+offset_right = 384.0
+offset_bottom = 304.0
 color = Color(0.5516505, 0.2163297, 0.60807693, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=614230464]
@@ -15,5 +15,5 @@ offset_bottom = 216.0
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=1590493429]
 offset_right = 40.0
-offset_bottom = 384.0
+offset_bottom = 304.0
 color = Color(0.34407577, 0.34407574, 0.34407574, 1)
