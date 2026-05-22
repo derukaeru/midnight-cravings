@@ -3,7 +3,9 @@ extends CharacterBody2D
 @onready var standing_collision = $StandingCollisionShape2D
 @onready var crouching_collision = $CrouchingCollisionShape2D
 
-var SPEED: int = 100
+var normal_speed: int = 500
+var SPEED: int = normal_speed
+
 enum States {
 	CROUCHING,
 	STANDING
@@ -30,12 +32,12 @@ func _physics_process(_delta) -> void:
 func _process(_delta) -> void:
 	match state:
 		States.STANDING:
-			SPEED = 100
+			SPEED = normal_speed
 			if standing_collision.disabled:
 				standing_collision.disabled = false
 				crouching_collision.disabled = true
 		States.CROUCHING:
-			SPEED = 60
+			SPEED = round(normal_speed * 0.7)
 			if crouching_collision.disabled:
 				crouching_collision.disabled = false
 				standing_collision.disabled = true

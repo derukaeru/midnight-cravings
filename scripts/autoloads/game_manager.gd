@@ -11,7 +11,7 @@ var current_face: int = 1
 var viewport_width: int = 384
 var midground_offset: float = 24.0
 
-var turn_speed: float = 2.7
+var turn_speed: float = 4
 var turning: bool = false
 
 @onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()
@@ -51,7 +51,6 @@ func _process(_d) -> void:
 			Util.mouse_visible()
 
 func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
-	
 	old_face.scale = Vector2(1.0, 1.0)
 	new_face.scale = Vector2(1.0, 1.0)
 	
@@ -64,9 +63,12 @@ func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
 	old_face.midground.scale = Vector2(1.0, 1.0)
 	old_face.midground.position = Vector2(midground_offset, 0.0)
 	
-	midground_tween_old.tween_property(old_face.midground, "scale:x", 0.7375, turn_speed * 0.5)
+	midground_tween_old.tween_property(old_face.midground, "scale:x", 0.6, turn_speed * 0.5)
 	midground_tween_old.parallel().tween_property(old_face.midground, "position:x", (viewport_width - midground_offset) * 0.5, turn_speed * 0.5)
 	midground_tween_old.tween_property(old_face.midground, "position:x", (viewport_width - midground_offset), turn_speed * 0.5)
+	
+	midground_tween_old_b.tween_interval(turn_speed * 0.5)
+	midground_tween_old_b.tween_property(old_face.midground, "scale:x", 0.0, turn_speed * 0.5)
 	
 	new_face.midground.scale = Vector2(0.0, 1.0)
 	new_face.midground.position = Vector2(midground_offset, 0.0)
@@ -78,8 +80,6 @@ func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
 	midground_tween_new_b.tween_interval(turn_speed * 0.4375)
 	midground_tween_new_b.tween_property(new_face.midground, "scale:x", 0.5725, turn_speed * 0.0625)
 	midground_tween_new_b.tween_property(new_face.midground, "scale:x", 1.0, turn_speed * 0.5)
-	
-	
 	
 	#foreground
 	var foreground_tween: Tween = get_tree().create_tween()
@@ -109,17 +109,30 @@ func turn_tween_right(old_face, new_face) -> void:
 	new_face.scale = Vector2(1.0, 1.0)
 	
 	# midground
-	var midground_tween = get_tree().create_tween()
+	var midground_tween_old: Tween = get_tree().create_tween()
+	var midground_tween_new: Tween = get_tree().create_tween()
+	var midground_tween_old_b: Tween = get_tree().create_tween()
+	var midground_tween_new_b: Tween = get_tree().create_tween()
 	
 	old_face.midground.scale = Vector2(1.0, 1.0)
 	old_face.midground.position = Vector2(midground_offset, 0.0)
-	midground_tween.tween_property(old_face.midground, "scale:x", 0.0, turn_speed)
+	midground_tween_old.parallel().tween_property(old_face.midground, "scale:x", 0.5975, turn_speed * 0.4375)
+	midground_tween_old.parallel().tween_property(old_face.midground, "position:x", 0.0, turn_speed * 0.5)
+	midground_tween_old.tween_property(old_face.midground, "position:x", midground_offset, turn_speed * 0.5)
+	
+	midground_tween_old_b.tween_interval(turn_speed * 0.4375)
+	midground_tween_old_b.tween_property(old_face.midground, "scale:x", 0.5725, turn_speed * 0.0625)
+	midground_tween_old_b.tween_property(old_face.midground, "scale:x", 0.0, turn_speed * 0.5)
 	
 	new_face.midground.scale = Vector2(0.0, 1.0)
-	new_face.midground.position = Vector2(viewport_width - midground_offset, 0.0)
+	new_face.midground.position = Vector2((viewport_width - midground_offset), 0.0)
 	
-	midground_tween.parallel().tween_property(new_face.midground, "scale:x", 1.0, turn_speed)
-	midground_tween.parallel().tween_property(new_face.midground, "position:x", midground_offset, turn_speed)
+	midground_tween_new.tween_property(new_face.midground, "scale:x", 0.6, turn_speed * 0.5)
+	midground_tween_new.parallel().tween_property(new_face.midground, "position:x", (viewport_width - midground_offset) * 0.5, turn_speed * 0.5)
+	midground_tween_new.tween_property(new_face.midground, "position:x", midground_offset, turn_speed * 0.5)
+	
+	midground_tween_new_b.tween_interval(turn_speed * 0.5)
+	midground_tween_new_b.tween_property(new_face.midground, "scale:x", 1.0, turn_speed * 0.5)
 	
 	#foreground
 	var foreground_tween = get_tree().create_tween()
