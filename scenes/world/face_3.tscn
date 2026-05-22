@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwm30hm4jj6nh" path="res://scenes/world/face_3.gd" id="1_grrvk"]
 [ext_resource type="Texture2D" uid="uid://cyhv0c7cwhc3n" path="res://assets/sprites/world/face_3_midground.png" id="2_grrvk"]
+[ext_resource type="Texture2D" uid="uid://cu14n2xmg5qfc" path="res://assets/sprites/world/face_3_foreground.png" id="3_e2n6d"]
 
 [node name="face_3" type="Node2D" unique_id=1102027986]
 script = ExtResource("1_grrvk")
@@ -12,4 +13,5 @@ texture = ExtResource("2_grrvk")
 centered = false
 
 [node name="foreground" type="Sprite2D" parent="." unique_id=533733574]
+texture = ExtResource("3_e2n6d")
 centered = false

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://calw12m26ennj" path="res://scenes/world/face_4.gd" id="1_xi20a"]
 [ext_resource type="Texture2D" uid="uid://omkdnxlhk80i" path="res://assets/sprites/world/face_4_midground.png" id="2_xi20a"]
-[ext_resource type="Texture2D" uid="uid://b1xu2nx26yfn4" path="res://assets/sprites/world/face_1_foreground.png" id="3_lg52y"]
+[ext_resource type="Texture2D" uid="uid://rm5w8auqltuy" path="res://assets/sprites/world/face_4_foreground.png" id="3_lg52y"]
 
 [node name="face_4" type="Node2D" unique_id=1161289403]
 script = ExtResource("1_xi20a")

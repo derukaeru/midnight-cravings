@@ -66,6 +66,15 @@ func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
 	new_face.midground.position = Vector2(midground_offset, 0.0)
 	tween.parallel().tween_property(new_face.midground, "scale:x", 1.0, turn_speed)
 	
+	#foreground
+	old_face.foreground.scale = Vector2(1.0, 1.0)
+	old_face.foreground.position = Vector2(0.0, 0.0)
+	tween.tween_property(old_face.foreground, "scale:x", 0.0, turn_speed)
+	tween.parallel().tween_property(old_face.foreground, "position:x", viewport_width, turn_speed)
+
+	new_face.foreground.scale = Vector2(0.0, 1.0)
+	new_face.foreground.position = Vector2(0.0, 0.0)
+	tween.parallel().tween_property(new_face.foreground, "scale:x", 1.0, turn_speed)
 	
 	# player
 	tween.parallel().tween_property(Util.get_player(), "position:x", viewport_width - 17, turn_speed)
@@ -81,6 +90,10 @@ func turn_tween_left(old_face: Node2D, new_face: Node2D) -> void:
 func turn_tween_right(old_face, new_face) -> void:
 	var tween = get_tree().create_tween()
 	
+	old_face.scale = Vector2(1.0, 1.0)
+	new_face.scale = Vector2(1.0, 1.0)
+	
+	# midground
 	old_face.midground.scale = Vector2(1.0, 1.0)
 	old_face.midground.position = Vector2(midground_offset, 0.0)
 	tween.tween_property(old_face.midground, "scale:x", 0.0, turn_speed)
@@ -90,8 +103,22 @@ func turn_tween_right(old_face, new_face) -> void:
 	
 	tween.parallel().tween_property(new_face.midground, "scale:x", 1.0, turn_speed)
 	tween.parallel().tween_property(new_face.midground, "position:x", midground_offset, turn_speed)
+	
+	#foreground
+	old_face.foreground.scale = Vector2(1.0, 1.0)
+	old_face.foreground.position = Vector2(0.0, 0.0)
+	tween.tween_property(old_face.foreground, "scale:x", 0.0, turn_speed)
+	
+	new_face.foreground.scale = Vector2(0.0, 1.0)
+	new_face.foreground.position = Vector2(viewport_width, 0.0)
+	
+	tween.parallel().tween_property(new_face.foreground, "scale:x", 1.0, turn_speed)
+	tween.parallel().tween_property(new_face.foreground, "position:x", 0.0, turn_speed)
+	
+	#player
 	tween.parallel().tween_property(Util.get_player(), "position:x", 17, turn_speed)
 	
+	# ending
 	tween.tween_callback(func(): turn_done.emit())
 	tween.parallel().tween_callback(func(): 
 		current_face -= 1
