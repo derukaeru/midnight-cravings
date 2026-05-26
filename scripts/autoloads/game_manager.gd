@@ -11,7 +11,7 @@ var current_face: int = 1
 var viewport_width: int = 384
 var midground_offset: float = 24.0
 
-var turn_speed: float = 4
+var turn_speed: float = 1.0
 var turning: bool = false
 
 @onready var dialogue_box = load(Registry.UID["dialogue_box"]).instantiate()

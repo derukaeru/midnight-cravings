@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var standing_collision = $StandingCollisionShape2D
 @onready var crouching_collision = $CrouchingCollisionShape2D
 
-var normal_speed: int = 500
+var normal_speed: int = 60
 var SPEED: int = normal_speed
 
 enum States {
